@@ -18,6 +18,7 @@ module.exports = {
       },
     ],
   },
+  
   resolve: {
     modules: [
       'node_modules',
@@ -28,4 +29,5 @@ module.exports = {
   devServer: {
     contentBase: './',
   },
+  
 };
