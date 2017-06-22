@@ -10,8 +10,10 @@ export default class Home extends Component {
   render() {
     return (
       <div className="home wrap">
-        <h2>home page</h2>
-        <Link to="/single">go to single page</Link>
+        <section className="home_section">
+          <h2>home page</h2>
+          <Link to="/single">go to single page</Link>
+        </section>
       </div>
     );
   }

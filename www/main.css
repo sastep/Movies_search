@@ -38,3 +38,7 @@ button{
 ::-webkit-input-placeholder{
   font-family: "Comic Sans Ms";
 }
+.home_section{
+  height: 400px;
+  background-color: brown;
+}

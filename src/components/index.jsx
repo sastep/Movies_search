@@ -1,14 +1,15 @@
-import React, { Component } from 'react';
+import React, { Component, cloneElement } from 'react';
 
 import Header from './header/header';
 import Footer from './footer/footer';
 
 class MainWrapper extends Component {
   render() {
+    console.log(this.props.siteData)
     return (
       <div className="main">
         <Header />
-        {this.props.children}
+        {cloneElement(this.props.children, { siteData: this.props.siteData })}
         <Footer />
       </div>
     );
