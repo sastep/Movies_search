@@ -1,4 +1,26 @@
-
-body {
-  background: red;
+.home_section{
+  min-height: 400px;
 }
+ol{
+  list-style-position: inside;
+  font-size: 1.25em;
+  line-height:1.25em;
+}
+li {
+   > span {
+      position: relative;
+      border-bottom: 2px solid white;
+      cursor: pointer;
+      transition: .5s all;
+      left: 0;
+   }
+}
+.home{
+  display: flex;
+}
+.current{
+  margin-left: 30px;
+  display: flex;
+  flex-direction: column;
+}
+

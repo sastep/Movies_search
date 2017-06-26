@@ -1,9 +1,9 @@
 import Search from './search';
-import readMore from './readMore';
+import getSingleMovie from './movieInfo';
 import recentMovies from './recentMovies';
 
 export default {
   Search,
-  readMore,
+  getSingleMovie,
   recentMovies,
 };

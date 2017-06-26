@@ -1,4 +1,4 @@
-const readMore = (state = {}, action) => {
+const getSingleMovie = (state = {}, action) => {
   switch (action.type) {
     case 'READ_MORE':
       return { ...state, moreData: action.payload };
@@ -9,4 +9,4 @@ const readMore = (state = {}, action) => {
   }
 };
 
-export default readMore;
+export default getSingleMovie;

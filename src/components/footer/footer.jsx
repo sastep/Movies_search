@@ -8,7 +8,6 @@ import { getRecentMovies } from '../../actions/recentMovies';
 
 const mapDispatchToProps = dispatch => ({
   getRecentMovies: () => dispatch(getRecentMovies()),
-  // add: (title, ID) => dispatch(add({ title, ID })),
 });
 
 const mapStateToProps = state => ({
@@ -20,24 +19,21 @@ class Footer extends PureComponent {
     this.props.getRecentMovies();
   }
   render() {
-    console.log(this.props.paramsId);
-    if (this.props.paramsId) {
-
-    }
+    const paramsId = this.props || null;
     return (
       <footer>
         <section className="wrap">
-          <h3>footer</h3>
-          <ol>
+          <h2>Recent Movies</h2>
+          <ul>
             {
               _.map(this.props.movies && this.props.movies.movies, (item, i) => {
-                if ((this.props.paramsId && this.props.paramsId !== item.ID) || (!this.props.paramsId && i !== 5)) {
-                  return <li key={i}><Link to={`/single/${item.ID}`}>{item.title}</Link></li>;
+                if ((paramsId && paramsId !== item.ID) || (paramsId && i !== 5)) {
+                  return <li key={i}><Link to={`/single/${item.ID}`}><img src={item.poster === 'N/A' ? 'https://s.movie.as/images/none_175px.jpg' : item.poster} alt="" width="100" /><span style={{"verticalAlign":"center"}}>{item.title}</span></Link></li>;
                 }
                 return false;
               })
             }
-          </ol>
+          </ul>
         </section>
       </footer>
     );

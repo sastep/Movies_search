@@ -2,35 +2,33 @@ import React, { PureComponent } from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 
-import readMore from '../../actions/readMore';
-
+import getSingleMovie from '../../actions/movieInfo';
 
 const mapStateToProps = state => ({
-  moreData: state.readMore.moreData,
+  moreData: state.getSingleMovie.moreData,
 });
 const mapDispatchToProps = dispatch => ({
-  readMore: ID => dispatch(readMore(ID)),
+  getSingleMovie: ID => dispatch(getSingleMovie(ID)),
 });
 
 class SinglePage extends PureComponent {
   componentWillMount() {
-    this.props.readMore(this.props.params.id);
+    this.props.getSingleMovie(this.props.params.id);
   }
-  
   componentWillReceiveProps(nextProps) {
-    if(nextProps.params.id !== this.props.params.id){
-      this.props.readMore(this.props.params.id);
+    if (nextProps.params.id !== this.props.params.id) {
+      this.props.getSingleMovie(this.props.params.id);
     }
   }
   render() {
     const { moreData } = this.props;
     return (
       <div className="single-page wrap">
-        <h2>single page</h2>
+        { moreData && <h2>{moreData.data.Title}</h2>}
         {!moreData && <img className="londing" src="http://www.wallies.com/filebin/images/loading_apple.gif" alt="" />}
         {moreData &&
           <div className="poster">
-            <img src={moreData.data.Poster} alt="" />
+            <img src={moreData.data.Poster === 'N/A' ? 'https://s.movie.as/images/none_175px.jpg' : moreData.data.Poster} />
             <div>
               <p><b>Actors</b>: {moreData.data.Actors}</p>
               <p><b>Country</b>: {moreData.data.Country}</p>

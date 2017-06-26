@@ -19,11 +19,6 @@ const store = createStore(
   rootReducer,
   composeWithDevTools(applyMiddleware(...middlewares)),
 );
-
-// store.subscribe(() => {
-//   saveState(store.getState().currentMovies);
-// });
-
 render(
   <Provider store={store}>
     <Routes />
