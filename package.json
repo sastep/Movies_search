@@ -19,9 +19,9 @@
   },
   "dependencies": {
     "axios": "^0.16.2",
-    "gulp-clean-css": "^2.0.11",
+    "gulp-clean-css": "^2.4.0",
     "gulp-eslint": "^2.0.0",
-    "gulp-imagemin": "^3.0.3",
+    "gulp-imagemin": "^3.3.0",
     "gulp-rev": "^7.1.2",
     "has-flag": "^2.0.0",
     "is-utf8": "^0.2.1",
