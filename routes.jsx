@@ -11,7 +11,7 @@ export default class Routes extends Component {
       <Router history={browserHistory}>
         <Route path="/" component={MainWrapper}>
           <IndexRoute component={Home} />
-          <Route path="/single" component={SinglePage} />
+          <Route path="/single/(:id)" component={SinglePage} />
         </Route>
       </Router>
     );

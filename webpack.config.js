@@ -27,7 +27,11 @@ module.exports = {
     extensions: ['.js', '.jsx', '.json'],
   },
   devServer: {
+    historyApiFallback: true,
     contentBase: './',
+    stats: 'errors-only'
   },
   
+  
+  devtool: 'source-map'
 };

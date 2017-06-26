@@ -1,16 +1,15 @@
-import React, { Component, cloneElement } from 'react';
+import React, { PureComponent, cloneElement } from 'react';
 
 import Header from './header/header';
 import Footer from './footer/footer';
 
-class MainWrapper extends Component {
+class MainWrapper extends PureComponent {
   render() {
-    console.log(this.props.siteData)
     return (
       <div className="main">
         <Header />
         {cloneElement(this.props.children, { siteData: this.props.siteData })}
-        <Footer />
+        <Footer paramsId={this.props.params.id || null} />
       </div>
     );
   }
