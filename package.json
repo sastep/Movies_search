@@ -18,9 +18,10 @@
     "lint": "./node_modules/.bin/eslint --ext .jsx --ext .js src"
   },
   "dependencies": {
-    "gulp-clean-css": "^2.0.11",
+    "axios": "^0.16.2",
+    "gulp-clean-css": "^2.4.0",
     "gulp-eslint": "^2.0.0",
-    "gulp-imagemin": "^3.0.3",
+    "gulp-imagemin": "^3.3.0",
     "gulp-rev": "^7.1.2",
     "has-flag": "^2.0.0",
     "is-utf8": "^0.2.1",
@@ -28,7 +29,12 @@
     "react-redux": "^5.0.5",
     "react-router": "^2.8.1",
     "react-router-dom": "^4.1.1",
-    "redux": "3.6.0"
+    "redux": "3.6.0",
+    "redux-axios-middleware": "^4.0.0",
+    "redux-devtools-extension": "^2.13.2",
+    "redux-localstorage": "^0.4.1",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.2.0"
   },
   "devDependencies": {
     "babel-core": "6.21.0",
