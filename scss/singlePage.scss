@@ -1,3 +1,27 @@
 .poster{
   display: flex;
+  margin: 70px 0;
+}
+.single{
+  margin-left: 50px;
+}
+.single > p{
+  line-height: 2em;
+}
+.title{
+  text-align: center;
+  color: #ff2900;
+  margin: 20px 0;
+}
+b{
+  border-left: 2px solid gold;
+  padding-left: 10px;
+  transition: .5s all;
+  cursor: default;
+}
+b:hover{
+  border-color: #ff2900;
+}
+.single-page{
+  min-height: 570px;
 }
