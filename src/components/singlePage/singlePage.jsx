@@ -1,11 +1,11 @@
 import React, { PureComponent } from 'react';
-import { Link } from 'react-router';
 import { connect } from 'react-redux';
 
 import getSingleMovie from '../../actions/movieInfo';
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state, ownProps) => ({
   moreData: state.getSingleMovie.moreData,
+  ID: ownProps.params.id,
 });
 const mapDispatchToProps = dispatch => ({
   getSingleMovie: ID => dispatch(getSingleMovie(ID)),
@@ -17,19 +17,19 @@ class SinglePage extends PureComponent {
   }
   componentWillReceiveProps(nextProps) {
     if (nextProps.params.id !== this.props.params.id) {
-      this.props.getSingleMovie(this.props.params.id);
+      this.props.getSingleMovie(nextProps.params.id);
     }
   }
   render() {
     const { moreData } = this.props;
     return (
       <div className="single-page wrap">
-        { moreData && <h2>{moreData.data.Title}</h2>}
-        {!moreData && <img className="londing" src="http://www.wallies.com/filebin/images/loading_apple.gif" alt="" />}
-        {moreData &&
+        { moreData && <h2 className="title">{moreData.data.Title}</h2>}
+        {!moreData && <img className="loading" src="http://www.wallies.com/filebin/images/loading_apple.gif" alt="" />}
+        {moreData && this.props.ID === this.props.moreData.data.imdbID &&
           <div className="poster">
-            <img src={moreData.data.Poster === 'N/A' ? 'https://s.movie.as/images/none_175px.jpg' : moreData.data.Poster} />
-            <div>
+            <img src={moreData.data.Poster === 'N/A' ? 'https://s.movie.as/images/none_175px.jpg' : moreData.data.Poster} alt="" />
+            <div className="single">
               <p><b>Actors</b>: {moreData.data.Actors}</p>
               <p><b>Country</b>: {moreData.data.Country}</p>
               <p><b>Genre</b>: {moreData.data.Genre}</p>
@@ -39,7 +39,6 @@ class SinglePage extends PureComponent {
             </div>
           </div>
         }
-        <Link to="/">go to Home page</Link>
       </div>
     );
   }

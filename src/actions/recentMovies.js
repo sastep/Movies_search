@@ -11,12 +11,15 @@ export const getRecentMovies = () => (dispatch) => {
 
 export const add = newMovie => (dispatch) => {
   const recent = JSON.parse(localStorage.getItem('allMovies')) || [];
-  recent.unshift(newMovie);
-  if (recent.length > 5) recent.splice(6, 1);
-  localStorage.setItem('allMovies', JSON.stringify(recent));
-  if (!_.isEmpty(recent)) {
-    dispatch({ type: 'ADD_NEW_MOVIE', payload: recent });
-  } else {
-    dispatch({ type: 'ADD_NEW_MOVIE', payload: [] });
+  const newArr = _.filter(recent, o => o.ID !== newMovie.ID);
+  if (newArr.length === recent.length) {
+    recent.unshift(newMovie);
+    if (recent.length > 5) recent.splice(6, 1);
+    localStorage.setItem('allMovies', JSON.stringify(recent));
+    if (!_.isEmpty(recent)) {
+      dispatch({ type: 'ADD_NEW_MOVIE', payload: recent });
+    } else {
+      dispatch({ type: 'ADD_NEW_MOVIE', payload: [] });
+    }
   }
 };

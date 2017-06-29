@@ -7,6 +7,7 @@ import { add } from '../../actions/recentMovies';
 
 const mapStateToProps = state => ({
   data: state.Search.movies && state.Search.movies.data,
+  searchTitle: state.Search.searchTitle,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -28,14 +29,15 @@ class Home extends Component {
   renderData = (data) => {
     if (data && data.Response === 'True') {
       return (
-        <div >
-          <ol>
+        <div className="search-result">
+          <h3>Search results for <i>{this.props.searchTitle}</i></h3>
+          <ul>
             {_.map(data.Search, (item, i) =>
               <li key={i}>
                 <span onClick={() => this.setState({ item })}>{ item.Title }</span>
               </li>)
             }
-          </ol>
+          </ul>
           {data.totalResults > 10 && <h3>and other {data.totalResults - 10} movies</h3>}
         </div>
       );
@@ -45,9 +47,9 @@ class Home extends Component {
       );
     }
     return (
-      <div className="default_pag">
-        <h1>Top 10 Movies of all time</h1>
-        <iframe src="https://www.youtube.com/embed/TDeW0NFwHkw?ecver=2" />
+      <div className="default_page">
+        <h1>Top 30 Movies of all time</h1>
+        <iframe width="1100" height="700" src="https://www.youtube.com/embed/9azGzlvCygA" frameBorder="0" allowFullScreen />
       </div>
     );
   };
@@ -61,11 +63,13 @@ class Home extends Component {
         </section>
         {item &&
           <section className="current">
-            <h3>{item.Title}</h3>
-            <img src={item.Poster !== 'N/A' ? item.Poster : 'https://s.movie.as/images/none_175px.jpg'} alt={item.Title} width="175px" id="poster" />
-            <h4>Type: {item.Type}</h4>
-            <h4>Year: {item.Year}</h4>
-            <span onClick={() => this.props.add(item.Title, item.imdbID, item.Poster)}><Link to={`/single/${item.imdbID}`}>read more</Link></span>
+            <h2>{item.Title} <i>{item.Year}</i></h2>
+            <Link
+              to={`/single/${item.imdbID}`}
+              onClick={() => this.props.add(item.Title, item.imdbID, item.Poster)}
+            >
+              <img src={item.Poster !== 'N/A' ? item.Poster : 'https://s.movie.as/images/none_175px.jpg'} alt={item.Title} width="175px" id="poster" />
+            </Link>
           </section>
         }
       </main>
