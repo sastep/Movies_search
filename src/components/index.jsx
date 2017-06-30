@@ -6,7 +6,7 @@ import Footer from './footer/footer';
 const MainWrapper = props => (
   <div className="main">
     <Header />
-    {cloneElement(props.children, { siteData: props.siteData })}
+    <div className="middle">{cloneElement(props.children, { siteData: props.siteData })}</div>
     <Footer paramsId={props.params.id || null} />
   </div>
 );
