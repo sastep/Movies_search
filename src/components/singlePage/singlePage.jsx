@@ -3,9 +3,21 @@ import { connect } from 'react-redux';
 
 import getSingleMovie from '../../actions/movieInfo';
 
+const movieSelector = (state, id) => {
+  const { SingleMovie = {} } = state;
+  if (
+    SingleMovie.moreData &&
+    SingleMovie.moreData.data &&
+    id &&
+    SingleMovie.moreData.data.imdbID === id
+  ) {
+    return SingleMovie.moreData.data;
+  }
+  return { Title: 'No such movie' };
+};
+
 const mapStateToProps = (state, ownProps) => ({
-  moreData: state.getSingleMovie.moreData,
-  ID: ownProps.params.id,
+  moreData: movieSelector(state, ownProps.params.id),
 });
 const mapDispatchToProps = dispatch => ({
   getSingleMovie: ID => dispatch(getSingleMovie(ID)),
@@ -24,18 +36,18 @@ class SinglePage extends PureComponent {
     const { moreData } = this.props;
     return (
       <div className="single-page wrap">
-        { moreData && <h2 className="title">{moreData.data.Title}</h2>}
+        {moreData && <h2 className="title">{moreData.Title}</h2>}
         {!moreData && <img className="loading" src="http://www.wallies.com/filebin/images/loading_apple.gif" alt="" />}
-        {moreData && this.props.ID === this.props.moreData.data.imdbID &&
+        {moreData &&
           <div className="poster">
-            <img src={moreData.data.Poster === 'N/A' ? 'https://s.movie.as/images/none_175px.jpg' : moreData.data.Poster} alt="" />
+            <img src={moreData.Poster === 'N/A' ? 'https://s.movie.as/images/none_175px.jpg' : moreData.Poster} alt="" />
             <div className="single">
-              <p><b>Actors</b>: {moreData.data.Actors}</p>
-              <p><b>Country</b>: {moreData.data.Country}</p>
-              <p><b>Genre</b>: {moreData.data.Genre}</p>
-              <p><b>Released</b>: {moreData.data.Released}</p>
-              <p><b>Runtime</b>: {moreData.data.Runtime}</p>
-              <p><b>About movie</b>: {moreData.data.Plot}</p>
+              <p><b>Actors</b>: {moreData.Actors}</p>
+              <p><b>Country</b>: {moreData.Country}</p>
+              <p><b>Genre</b>: {moreData.Genre}</p>
+              <p><b>Released</b>: {moreData.Released}</p>
+              <p><b>Runtime</b>: {moreData.Runtime}</p>
+              <p><b>About movie</b>: {moreData.Plot}</p>
             </div>
           </div>
         }
